@@ -1,0 +1,55 @@
+﻿@model IEnumerable<NguyenMinhHiep220900100project2.Models.CartItem>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+}
+
+<h2>Giỏ hàng</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Tổng</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TenSanPham</td>
+                    <td>@item.Gia.ToString("C")</td>
+                    <td>
+                        @using (Html.BeginForm("UpdateQuantity", "ShoppingCart", FormMethod.Post))
+                        {
+                            @Html.Hidden("maSanPham", item.MaSanPham)
+                            @Html.TextBox("soLuong", item.SoLuong, new { @class = "form-control", @style = "width:60px;" })
+                            <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                        }
+                    </td>
+                    <td>@(item.Gia * item.SoLuong).ToString("C")</td>
+                    <td>
+                        @Html.ActionLink("Xóa", "RemoveFromCart", new { maSanPham = item.MaSanPham }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Giỏ hàng trống</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    Tổng tiền: @Model.Sum(i => i.Gia * i.SoLuong).ToString("C")
+</p>
+
+<a href="@Url.Action("Checkout", "ShoppingCart", null, Request.Url.Scheme)" class="btn btn-success">Thanh toán</a>

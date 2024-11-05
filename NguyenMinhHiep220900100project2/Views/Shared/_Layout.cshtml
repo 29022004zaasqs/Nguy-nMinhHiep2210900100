@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Quản Lý Bán Hàng</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            padding-top: 70px; /* Tăng khoảng cách cho navbar cố định */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa; /* Màu nền cho trang */
+        }
+
+        footer {
+            padding: 20px 0;
+            background-color: #343a40; /* Màu nền cho footer */
+            color: #ffffff; /* Màu chữ cho footer */
+            text-align: center;
+            font-size: 16px; /* Kích thước chữ cho footer */
+            margin-top: 20px; /* Khoảng cách trên footer */
+        }
+
+        .navbar-brand {
+            font-size: 28px; /* Kích thước chữ cho tên thương hiệu */
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 20px; /* Kích thước chữ cho các mục menu */
+            margin-right: 15px; /* Khoảng cách giữa các mục menu */
+        }
+
+        .body-content {
+            font-size: 18px; /* Kích thước chữ cho nội dung chính */
+            padding: 20px; /* Padding cho nội dung chính */
+            background-color: #ffffff; /* Màu nền cho nội dung chính */
+            border-radius: 10px; /* Bo góc cho nội dung chính */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Đổ bóng cho nội dung chính */
+            margin-bottom: 20px; /* Khoảng cách dưới nội dung chính */
+        }
+
+        .header-title {
+            margin-bottom: 20px;
+            font-size: 30px; /* Kích thước chữ cho tiêu đề chính */
+            text-align: center;
+            font-weight: bold;
+            color: #343a40; /* Màu chữ cho tiêu đề chính */
+        }
+
+        .nav-link:hover {
+            color: #ffc107; /* Màu chữ khi hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Quản Lý Bán Hàng</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">@Html.ActionLink("Trang Chủ", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Danh Mục", "Index", "DanhMucs", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Sản Phẩm", "Index", "SanPhams", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Đơn Hàng", "Index", "DonHangs", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Chi Tiết Đơn Hàng", "Index", "ChiTietDonHangs", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Người Dùng", "Index", "NguoiDungs", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Giỏ Hàng", "Index", "ShoppingCart", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Đăng Nhập", "Login", "Account", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Đăng Ký", "Register", "Account", null, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        <h1 class="header-title">Chào Mừng Đến Với Quản Lý Bán Hàng</h1>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Quản Lý Bán Hàng</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
